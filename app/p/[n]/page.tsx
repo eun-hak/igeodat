@@ -17,7 +17,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { n } = await params;
   return {
-    title: `전체 게시판 ${n}페이지 | 이거닷`,
+    title: `전체 게시판 ${n}페이지`,
     robots: { index: false, follow: true }, // 페이지네이션은 색인 제외, 링크만 따라가게
   };
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: `소개 | ${SITE_NAME}`,
+  title: "소개",
   description:
     "이거닷은 사람들이 실제로 검색한 질문에 대한 답을 게시판 형태로 정리하는 정보 사이트입니다.",
   alternates: { canonical: "/about" },

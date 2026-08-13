@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: `개인정보처리방침 | ${SITE_NAME}`,
+  title: "개인정보처리방침",
   description:
     "이거닷의 개인정보처리방침입니다. 수집하는 정보, 쿠키 및 광고 관련 안내를 확인하실 수 있습니다.",
   alternates: { canonical: "/privacy" },

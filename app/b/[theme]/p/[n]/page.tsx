@@ -18,7 +18,7 @@ export async function generateMetadata({
   const p = await params;
   const theme = decodeURIComponent(p.theme);
   return {
-    title: `${theme} 게시판 ${p.n}페이지 | ${SITE_NAME}`,
+    title: `${theme} 게시판 ${p.n}페이지`,
     robots: { index: false, follow: true },
   };
 }

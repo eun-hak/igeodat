@@ -16,7 +16,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const theme = decodeURIComponent((await params).theme);
   return {
-    title: `${theme} 게시판 | ${SITE_NAME}`,
+    title: `${theme} 게시판`,
     description: `${theme} 관련 질문과 답 모음 — ${SITE_NAME}`,
     alternates: { canonical: `/b/${theme}` },
   };

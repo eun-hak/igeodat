@@ -8,7 +8,7 @@ import { SITE_URL, SITE_NAME } from "@/lib/db";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: `${SITE_NAME} — 찾던 답, 이거닷`, template: "%s" },
+  title: { default: `${SITE_NAME} — 찾던 답, 이거닷`, template: `%s | ${SITE_NAME}` },
   description:
     "생활·금융·건강·요리·반려동물… 궁금한 것의 답을 찾는 곳, 이거닷.",
   openGraph: {

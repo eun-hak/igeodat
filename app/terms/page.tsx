@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: `이용약관 | ${SITE_NAME}`,
+  title: "이용약관",
   description: "이거닷 이용약관입니다.",
   alternates: { canonical: "/terms" },
   robots: { index: false, follow: true },
