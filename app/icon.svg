@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 이거닷 파비콘 — "이" = ㅇ(주황 닷) + ㅣ(흰 바). 폰트 없이 도형만 사용 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2C3A5A"/>
+      <stop offset="1" stop-color="#1D2839"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <circle cx="24.5" cy="33" r="12" fill="#F1502F"/>
+  <rect x="42" y="15" width="9" height="36" rx="4.5" fill="#FFFFFF"/>
+</svg>

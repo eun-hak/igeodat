@@ -1,0 +1,51 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { SITE_NAME } from "@/lib/db";
+
+export const metadata: Metadata = {
+  title: `소개 | ${SITE_NAME}`,
+  description:
+    "이거닷은 사람들이 실제로 검색한 질문에 대한 답을 게시판 형태로 정리하는 정보 사이트입니다.",
+  alternates: { canonical: "/about" },
+};
+
+export default function AboutPage() {
+  return (
+    <>
+      <div className="crumb">
+        <Link href="/">전체 게시판 ›</Link>
+      </div>
+      <div className="post-hd">
+        <h1>이거닷 소개</h1>
+      </div>
+      <div className="post-body">
+        <p>
+          이거닷은 사람들이 실제로 검색창에 입력한 질문을 모아, 그 답을
+          게시판 형태로 정리하는 정보 사이트입니다. &ldquo;찾던 답이 바로
+          이거다&rdquo;라는 순간을 만드는 것이 이 사이트의 목표입니다.
+        </p>
+        <h2>다루는 주제</h2>
+        <p>
+          생활·살림, 금융·행정, 건강·의료, 음식·요리, 반려동물, 취미·문화,
+          교육·학습, 관계·심리 등 일상에서 마주치는 궁금증을 폭넓게 다룹니다.
+          각 글은 하나의 실제 질문에서 출발하며, 배경 설명과 구체적인 대처
+          방법을 함께 정리합니다.
+        </p>
+        <h2>콘텐츠 작성 방식</h2>
+        <p>
+          이거닷의 콘텐츠는 AI(인공지능)의 도움을 받아 작성되고, 일정한 기준에
+          따라 구성·검수됩니다. 정확한 정보를 제공하기 위해 노력하지만, 모든
+          내용이 항상 최신이거나 정확함을 보장하지는 않습니다. 내용은 참고
+          용도로만 활용해 주세요.
+        </p>
+        <h2>꼭 확인해 주세요</h2>
+        <p>
+          건강·의료, 법률, 금융과 관련된 중요한 결정은 반드시 해당 분야
+          전문가(의사, 변호사, 금융기관 등)와 상담한 뒤 내리시기 바랍니다.
+          이거닷의 글은 일반적인 정보 제공을 목적으로 하며, 전문적인 진단이나
+          자문을 대신하지 않습니다.
+        </p>
+      </div>
+    </>
+  );
+}
