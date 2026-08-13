@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Row } from "@/lib/db";
+import { MAX_PAGE, type Row } from "@/lib/db";
 
 const HOT = 1500;
 
@@ -51,7 +51,11 @@ export function BoardList({
   );
 }
 
-/** 페이지네이션 — 경로 기반 (ISR 친화) */
+/** 페이지네이션 — 블록 방식 (게시판 문법).
+ *  숫자 5개 + ‹ › 블록 이동이라 모바일 360px 에서도 안 넘치고,
+ *  › 로 6~10, 11~15 … 끝 페이지까지 갈 수 있다. */
+const BLOCK = 5;
+
 export function Pager({
   page,
   pages,
@@ -63,19 +67,28 @@ export function Pager({
   hrefBase: string;
 }) {
   const base = hrefBase === "/" ? "" : hrefBase;
-  const n = Math.min(pages, 10);
-  if (n <= 1) return null;
+  const total = Math.min(pages, MAX_PAGE);
+  if (total <= 1) return null;
+  const start = Math.floor((page - 1) / BLOCK) * BLOCK + 1;
+  const end = Math.min(start + BLOCK - 1, total);
+  const href = (p: number) => (p === 1 ? hrefBase : `${base}/p/${p}`);
   return (
-    <div className="pager">
-      {Array.from({ length: n }, (_, k) => k + 1).map((p) => (
-        <Link
-          key={p}
-          href={p === 1 ? hrefBase : `${base}/p/${p}`}
-          className={`pg${p === page ? " on" : ""}`}
-        >
+    <nav className="pager" aria-label="페이지 이동">
+      {start > 1 && (
+        <Link href={href(start - 1)} className="pg pg-nav" aria-label="이전 페이지 묶음">
+          ‹
+        </Link>
+      )}
+      {Array.from({ length: end - start + 1 }, (_, k) => start + k).map((p) => (
+        <Link key={p} href={href(p)} className={`pg${p === page ? " on" : ""}`}>
           {p}
         </Link>
       ))}
-    </div>
+      {end < total && (
+        <Link href={href(end + 1)} className="pg pg-nav" aria-label="다음 페이지 묶음">
+          ›
+        </Link>
+      )}
+    </nav>
   );
 }

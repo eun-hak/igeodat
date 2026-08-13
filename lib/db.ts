@@ -12,7 +12,7 @@ import {
 export const SITE_URL = "https://igeodat.plentyer.com";
 export const SITE_NAME = "이거닷";
 export const PER = 25; // 목록 페이지당 행 수
-export const MAX_PAGE = 40; // Limit=page*PER 방식이라 상한을 둔다
+export const MAX_PAGE = 100; // Limit=page*PER 방식이라 상한을 둔다 (100p = 조회 2,500행, ISR 하루 캐시라 부담 없음)
 
 export const THEMES = [
   "생활살림",

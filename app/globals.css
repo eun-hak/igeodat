@@ -206,8 +206,12 @@ main {
 .pager {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 5px;
-  padding: 18px 0 6px;
+  padding: 18px 12px 6px;
+}
+.pg-nav {
+  font-weight: 700;
 }
 .pg {
   min-width: 34px;
