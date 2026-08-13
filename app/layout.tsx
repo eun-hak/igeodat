@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import Tabs from "@/components/Tabs";
 import Popular from "@/components/Popular";
@@ -19,7 +20,12 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
-  // 네이버 서치어드바이저 등록 시 verification.other 로 소유확인 메타태그 추가
+  verification: {
+    google: "nGLC6wqeingyxdWpDtTR9DKlBw7TNDT9A8_l8PrHWt0",
+    other: {
+      "naver-site-verification": "830b16c25563cd787196e9decf07e0d338c37b92",
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -34,6 +40,16 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CK3XP4X451"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-CK3XP4X451');
+        `}</Script>
         <header className="hd">
           <div className="hd-in">
             <Link href="/" className="logo">
