@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BoardPage from "@/components/BoardPage";
 import { SITE_URL, SITE_NAME } from "@/lib/db";
 
-export const revalidate = 600;
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },

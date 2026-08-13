@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import BoardPage from "@/components/BoardPage";
 import { THEMES, SITE_NAME, type Theme } from "@/lib/db";
 
-export const revalidate = 600;
+export const revalidate = 86400;
 
 export function generateStaticParams() {
   return THEMES.map((t) => ({ theme: t }));

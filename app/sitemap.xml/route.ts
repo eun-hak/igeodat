@@ -1,6 +1,6 @@
 import { getCohorts, SITE_URL } from "@/lib/db";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 /** 사이트맵 인덱스 — 코호트(주차)별 분할이 곧 색인 계측 단위다 */
 export async function GET() {

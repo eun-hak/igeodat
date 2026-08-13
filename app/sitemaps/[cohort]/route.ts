@@ -1,6 +1,6 @@
 import { getCohorts, getSitemapEntries, SITE_URL } from "@/lib/db";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function GET(
   _req: Request,
