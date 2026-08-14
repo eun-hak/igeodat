@@ -3,8 +3,7 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
   DynamoDBDocumentClient,
   QueryCommand,
-  DeleteCommand,
-  PutCommand,
+  BatchWriteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { SITE_URL } from "@/lib/db";
 
@@ -98,26 +97,37 @@ export async function GET(req: NextRequest) {
     );
     const batch = r.Items ?? [];
     if (!dryrun) {
-      for (const it of batch) {
+      // 50건 소비 = put 50 + delete 50. 순차 100회 왕복(느려서 제출기 타임아웃 유발)
+      // 대신 BatchWrite 25개 묶음 4회로 처리한다.
+      const reqs = batch.flatMap((it) => {
         const id = Number(it.id);
-        await doc.send(
-          new PutCommand({
-            TableName: TABLE,
-            Item: {
-              PK: "SUBMITTED#naver",
-              SK: `${today}#${String(id).padStart(8, "0")}`,
-              id,
-              url: it.url,
-              queuedSk: it.SK, // 복원 시 원래 큐 위치
+        return [
+          {
+            PutRequest: {
+              Item: {
+                PK: "SUBMITTED#naver",
+                SK: `${today}#${String(id).padStart(8, "0")}`,
+                id,
+                url: it.url,
+                queuedSk: it.SK, // 복원 시 원래 큐 위치
+              },
             },
-          })
-        );
-        await doc.send(
-          new DeleteCommand({
-            TableName: TABLE,
-            Key: { PK: "QUEUE#naver", SK: it.SK as string },
-          })
-        );
+          },
+          {
+            DeleteRequest: {
+              Key: { PK: "QUEUE#naver", SK: it.SK as string },
+            },
+          },
+        ];
+      });
+      for (let i = 0; i < reqs.length; i += 25) {
+        let items = reqs.slice(i, i + 25);
+        while (items.length) {
+          const w = await doc.send(
+            new BatchWriteCommand({ RequestItems: { [TABLE]: items } })
+          );
+          items = (w.UnprocessedItems?.[TABLE] ?? []) as typeof items;
+        }
       }
     }
     urls = batch.map((it) => `${SITE_URL}${it.url}`);
