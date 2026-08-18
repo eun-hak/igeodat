@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
     ["/b/[theme]/p/[n]", "page"],
     ["/sitemap.xml", undefined],
     ["/sitemaps/[cohort]", undefined],
+    ["/rss.xml", undefined],
   ];
   for (const [path, type] of targets) {
     revalidatePath(path, type);

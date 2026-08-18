@@ -191,6 +191,32 @@ export const getTitles = cache(
   }
 );
 
+/** RSS용 최신 글 — FEED 인덱스에서 발행일 내림차순 n개 (제목·테마·발행일만) */
+export const getFeedLatest = cache(
+  async (
+    n: number
+  ): Promise<{ id: number; title: string; theme: string; published: string }[]> => {
+    const r = await doc.send(
+      new QueryCommand({
+        TableName: TABLE,
+        KeyConditionExpression: "PK = :pk",
+        ExpressionAttributeValues: { ":pk": "FEED" },
+        ScanIndexForward: false,
+        Limit: n + 1, // '#META' 카운터가 섞일 수 있어 +1
+      })
+    );
+    return (r.Items ?? [])
+      .filter((it) => it.SK !== "#META")
+      .slice(0, n)
+      .map((it) => ({
+        id: Number(it.id),
+        title: String(it.title),
+        theme: String(it.theme ?? ""),
+        published: String(it.SK).slice(0, 10), // SK = "<발행일>#<id08>"
+      }));
+  }
+);
+
 /** 레일/하단 인기글: POPULAR 아이템이 있으면 그걸, 없으면 최신 글 (조작 금지 원칙) */
 export const getPopular = cache(
   async (): Promise<{ label: string; rows: { id: number; title: string; views?: number }[] }> => {
