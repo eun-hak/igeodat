@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -8,9 +7,9 @@ export default function NotFound() {
         주소가 바뀌었거나 삭제된 글입니다.
       </p>
       <p style={{ marginTop: 24 }}>
-        <Link href="/" className="btn">
+        <a href="/" className="btn">
           전체 게시판으로
-        </Link>
+        </a>
       </p>
     </div>
   );

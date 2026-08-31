@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { MAX_PAGE, type Row } from "@/lib/db";
 
 const HOT = 1500;
@@ -27,7 +26,7 @@ export function BoardList({
       {rows.map((r, i) => {
         const v = views.get(r.id) ?? 0;
         return (
-          <Link
+          <a
             key={r.id}
             href={`/q/${r.id}`}
             className={`row${showCat ? " has-cat" : ""}`}
@@ -44,7 +43,7 @@ export function BoardList({
               </span>
               <span className="date">{r.date}</span>
             </span>
-          </Link>
+          </a>
         );
       })}
     </div>
@@ -75,19 +74,19 @@ export function Pager({
   return (
     <nav className="pager" aria-label="페이지 이동">
       {start > 1 && (
-        <Link href={href(start - 1)} className="pg pg-nav" aria-label="이전 페이지 묶음">
+        <a href={href(start - 1)} className="pg pg-nav" aria-label="이전 페이지 묶음">
           ‹
-        </Link>
+        </a>
       )}
       {Array.from({ length: end - start + 1 }, (_, k) => start + k).map((p) => (
-        <Link key={p} href={href(p)} className={`pg${p === page ? " on" : ""}`}>
+        <a key={p} href={href(p)} className={`pg${p === page ? " on" : ""}`}>
           {p}
-        </Link>
+        </a>
       ))}
       {end < total && (
-        <Link href={href(end + 1)} className="pg pg-nav" aria-label="다음 페이지 묶음">
+        <a href={href(end + 1)} className="pg pg-nav" aria-label="다음 페이지 묶음">
           ›
-        </Link>
+        </a>
       )}
     </nav>
   );

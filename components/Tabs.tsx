@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const THEMES = [
@@ -20,17 +19,17 @@ export default function Tabs() {
   return (
     <nav className="tabs">
       <div className="tabs-in">
-        <Link href="/" className={`tab${allOn ? " on" : ""}`}>
+        <a href="/" className={`tab${allOn ? " on" : ""}`}>
           전체
-        </Link>
+        </a>
         {THEMES.map((t) => (
-          <Link
+          <a
             key={t}
             href={`/b/${t}`}
             className={`tab${path.startsWith(`/b/${t}`) ? " on" : ""}`}
           >
             {t}
-          </Link>
+          </a>
         ))}
       </div>
     </nav>

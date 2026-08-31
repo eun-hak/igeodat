@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import {
@@ -106,7 +105,7 @@ export default async function Page({
       />
 
       <div className="crumb">
-        <Link href={`/b/${post.theme}`}>{post.theme} 게시판 ›</Link>
+        <a href={`/b/${post.theme}`}>{post.theme} 게시판 ›</a>
       </div>
       <div className="post-hd">
         <h1>{post.title}</h1>
@@ -134,9 +133,9 @@ export default async function Page({
         <div className="rel">
           <div className="rel-hd">이 글과 함께 본 글</div>
           {related.map((r) => (
-            <Link key={r.id} href={`/q/${r.id}`}>
+            <a key={r.id} href={`/q/${r.id}`}>
               {r.title}
-            </Link>
+            </a>
           ))}
         </div>
       )}
@@ -144,9 +143,9 @@ export default async function Page({
       <Popular inline />
 
       <div className="btns">
-        <Link href={`/b/${post.theme}`} className="btn">
+        <a href={`/b/${post.theme}`} className="btn">
           목록
-        </Link>
+        </a>
       </div>
 
       {same.length > 0 && (

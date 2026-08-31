@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SITE_NAME } from "@/lib/db";
 
 export const metadata: Metadata = {
@@ -13,7 +12,7 @@ export default function AboutPage() {
   return (
     <>
       <div className="crumb">
-        <Link href="/">전체 게시판 ›</Link>
+        <a href="/">전체 게시판 ›</a>
       </div>
       <div className="post-hd">
         <h1>이거닷 소개</h1>

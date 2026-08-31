@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Link from "next/link";
 import Script from "next/script";
 import "./globals.css";
 import Tabs from "@/components/Tabs";
@@ -52,13 +51,13 @@ export default function RootLayout({
         `}</Script>
         <header className="hd">
           <div className="hd-in">
-            <Link href="/" className="logo">
+            <a href="/" className="logo">
               <svg className="logo-mark" viewBox="0 0 64 64" aria-hidden="true">
                 <circle cx="24.5" cy="33" r="12" fill="#F1502F" />
                 <rect x="42" y="15" width="9" height="36" rx="4.5" fill="#FFFFFF" />
               </svg>
               이거닷<span className="dot">.</span>
-            </Link>
+            </a>
             <span className="slogan">찾던 답, 이거닷</span>
           </div>
           <Tabs />
@@ -75,9 +74,9 @@ export default function RootLayout({
 
         <footer className="ft">
           <nav className="ft-nav">
-            <Link href="/about">소개</Link>
-            <Link href="/terms">이용약관</Link>
-            <Link href="/privacy">개인정보처리방침</Link>
+            <a href="/about">소개</a>
+            <a href="/terms">이용약관</a>
+            <a href="/privacy">개인정보처리방침</a>
           </nav>
           <b>{SITE_NAME}</b> · 본 콘텐츠는 AI의 도움을 받아 작성된 참고용
           정보입니다. 의료·법률·금융 관련 결정은 반드시 전문가와 상의하세요.
