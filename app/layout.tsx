@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     google: "nGLC6wqeingyxdWpDtTR9DKlBw7TNDT9A8_l8PrHWt0",
     other: {
       "naver-site-verification": "830b16c25563cd787196e9decf07e0d338c37b92",
+      "google-adsense-account": "ca-pub-1410200096892996",
     },
   },
 };
@@ -81,6 +82,13 @@ export default function RootLayout({
           <b>{SITE_NAME}</b> · 본 콘텐츠는 AI의 도움을 받아 작성된 참고용
           정보입니다. 의료·법률·금융 관련 결정은 반드시 전문가와 상의하세요.
         </footer>
+        {/* AdSense 자동광고 — body 끝, hydration 이후 로드 (몽글과 동일 계정·구성) */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1410200096892996"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
